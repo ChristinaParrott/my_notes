@@ -1,0 +1,21 @@
+{% extends "my_notess/base.html" %}
+
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-3">Take some notes!</h1>
+
+        <p class="lead">
+            This is a simple note taking app that helps big brained apes like you organize your notes on any topic.
+        </p>
+
+        {% if not user.is_authenticated %}
+            <a class="btn btn-lg btn-success" href="{% url 'users:login' %}"
+               role="button">Log In &raquo;</a>
+            <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+               role="button">Register Now &raquo;</a>
+        {% else %}
+            <a class="btn btn-lg btn-primary" href="{% url 'my_notess:topics' %}"
+               role="button">View Topics &raquo;</a>
+        {% endif %}
+    </div>
+{% endblock page_header %}

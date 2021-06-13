@@ -1,0 +1,20 @@
+{% extends "my_notess/base.html" %}
+
+{% block page_header %}
+    <h1>Topics</h1>
+{% endblock page_header %}
+
+{% block content %}
+    <ul>
+        {% for topic in topics %}
+            <li><h4>
+                <a href="{% url 'my_notess:topic' topic.id %}">{{ topic }}</a>
+            </h4></li>
+        {% empty %}
+            <li><h4>No topics have been added yet. Get to work!</h4></li>
+        {% endfor %}
+    </ul>
+
+    <h5><a href="{% url 'my_notess:new_topic' %}">Add a new topic</a></h5>
+
+{% endblock content %}

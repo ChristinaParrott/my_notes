@@ -1,0 +1,28 @@
+{% extends 'my_notess/base.html' %}
+
+{% block page_header %}
+<h3>{{ topic }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+    <p>
+        <a href="{% url 'my_notess:new_note' topic.id %}">Add a new note</a>
+    </p>
+
+    {% for note in notes %}
+        <div class="card mb-3">
+            <h4 class="card-header">
+                {{ note.date_added|date:'M d, Y H:i' }}
+                <small>
+                    <a href="{% url 'my_notess:edit_note' note.id %}">Edit note</a>
+                </small>
+            </h4>
+            <div class="card-body">
+                {{ note.text|linebreaks }}
+            </div>
+        </div>
+    {% empty %}
+        <p>There are no notes for this topic yet. Get to writing!</p>
+    {% endfor %}
+
+{% endblock content %}
