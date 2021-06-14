@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 
@@ -22,7 +22,7 @@ def topics(request):
 @login_required
 def topic(request, topic_id):
     # Show all notes associated with a single topic
-    topic = Topic.objects.get(id=topic_id)
+    topic = get_object_or_404(Topic, id=topic_id)
 
     # Check that topic belongs to current user
     if not check_topic_owner(topic.owner, request.user):
@@ -82,7 +82,7 @@ def new_note(request, topic_id):
 @login_required
 def edit_note(request, note_id):
     # Edit an existing note
-    note = Note.objects.get(id=note_id)
+    note = get_object_or_404(Note, id=note_id)
     topic = note.topic
     # Check that topic belongs to current user
     if not check_topic_owner(topic.owner,request.user):
