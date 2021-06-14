@@ -1,0 +1,8 @@
+{% extends "my_notess/base.html" %}
+
+{% block page_header %}
+    <h2>Sorry! The item that you requested is not available. (404)</h2>
+
+    <a class="btn btn-lg btn-primary" href="{% url 'my_notess:index' %}"
+                   role="button">Notes Home &raquo;</a>
+{% endblock page_header %}
